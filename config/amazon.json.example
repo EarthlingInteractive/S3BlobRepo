@@ -1,0 +1,8 @@
+{
+	"credentials": {
+		"key": "Key goes here",
+		"secret": "Secret goes here"
+	},
+	"testBucketName": "test-bucket",
+	"testRepoPath": "test-datastore"
+}
