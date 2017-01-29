@@ -89,7 +89,9 @@ class EarthIT_S3BlobRepo_S3Repository implements TOGoS_PHPN2R_Repository
 			$hash = $this->hashScheme->urnToHash( $urn );
 		} catch( Exception $e ) { return null; /* not one of ours, apparently! */ }
 
-		$entity = $this->s3Client->getObject(array('Bucket'=>$this->s3BucketName, 'Key'=>$this->s3BlobPath($hash)));
+		try {
+			$entity = $this->s3Client->getObject(array('Bucket'=>$this->s3BucketName, 'Key'=>$this->s3BlobPath($hash)));
+		} catch( Aws\S3\Exception\NoSuchKeyException $e ) { return null; }
 		return Nife_Util::blob( (string)($entity['Body']) );
 	}
 }

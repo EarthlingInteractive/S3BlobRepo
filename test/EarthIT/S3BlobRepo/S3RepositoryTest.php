@@ -43,4 +43,9 @@ class EarthIT_S3BlobRepo_S3RepositoryTest extends PHPUnit_Framework_TestCase
 		$fetchedData = $this->S3BR->getBlob($urn);
 		$this->assertEquals( $data, (string)$fetchedData );
 	}
+	
+	public function testGetNonexistentBlob() {
+		$blob = $this->S3BR->getBlob("urn:bitprint:TFZSJB2JIWOOW3V2YO32G3OKQ33W2SKY.5ILHEBEF6VPVXXZIPNHXKTH62MK37TG723CR63I");
+		$this->assertNull($blob);
+	}
 }
